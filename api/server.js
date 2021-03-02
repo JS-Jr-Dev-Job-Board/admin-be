@@ -9,6 +9,7 @@ const expressValidator = require('express-validator')
 require('colors')
 
 // import modules
+const jobRouter = require('../routes/jobRouter')
 const statusRouter = require('../routes/statusRouter')
 
 const server = express()
@@ -17,6 +18,7 @@ const server = express()
 
 // middleware
 server.use(helmet())
+server.use(cors())
 server.use(morgan('dev'))
 server.use(express.json())
 server.use(cookieParser())
@@ -30,7 +32,7 @@ const limiter = new RateLimit({
 })
 
 // routes
-
+server.use('/api/v1/job', jobRouter)
 server.use('/', statusRouter) // this must be the last route for the '*' to work correctly
 
 module.exports = server
