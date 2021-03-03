@@ -10,11 +10,15 @@ require('colors')
 
 // import modules
 const jobRouter = require('../routes/jobRouter')
+const authRouter = require('../routes/authRouter')
 const statusRouter = require('../routes/statusRouter')
+
+const connectDb = require('../utils/connectDb')
 
 const server = express()
 
 //db connection
+connectDb()
 
 // middleware
 server.use(helmet())
@@ -33,6 +37,7 @@ const limiter = new RateLimit({
 
 // routes
 server.use('/api/v1/job', jobRouter)
+server.use('/api/v1/auth', authRouter)
 server.use('/', statusRouter) // this must be the last route for the '*' to work correctly
 
 module.exports = server
