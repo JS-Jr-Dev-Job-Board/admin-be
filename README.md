@@ -37,6 +37,7 @@ git commit -m 'Refactor usability tests.
 >
 >
 Co-authored-by: Zac Smith zrs3141592@gmail.com
+Co-authored-by: Alexandra Myers alexandrakay616@gmail.com
 Co-authored-by: Tom Sherman tom-sherman@lambdastudents.com'
 
 
