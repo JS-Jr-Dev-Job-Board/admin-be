@@ -1,25 +1,25 @@
 const Job = require('../models/jobModel')
 
 exports.getAllJobs = (req, res) => {
+  //Get all jobs using callback
   Job.find().exec((err, jobs) => {
     if (err) return res.status(400).json({ error: 'Could not find jobs' })
     jobs.contactName = undefined
     res.status(200).json(jobs)
   })
-  // const jobs = {
-  //   company: 'Code Shock',
-  //   location: 'remote',
-  //   description:
-  //     'Only bad ass devs wanted! Must be interested in pushing your own limits and always learning!',
-  //   salaryMin: 50000,
-  //   // salaryRange: 15000
-  //   skills: ['java', 'node', 'mysql', 'redux', 'angular'],
-  //   benefits: 'full',
-  //   employmentType: 'contract',
-  //   startDate: new Date(),
-  //   endDate: new Date(),
-  //   applyurl: 'https://google.com',
+
+  // async / await
+  // try {
+  //   const job = await Job.find()
+  //   res.status(200).json(job)
+  // } catch (err) {
+  //   console.log(err)
   // }
+
+  // promise
+  // Job.find()
+  //   .then((data) => res.status(200).json(data))
+  //   .catch((err) => console.log(err))
 }
 
 exports.getJobById = (req, res) => {}
@@ -30,6 +30,7 @@ exports.createNewJobPosting = (req, res) => {
   job.save((err, job) => {
     if (err) res.status(400).json({ error: 'Error creating new job' })
     job.contactName = undefined
+    job.__v = undefined
     res.status(201).json(job)
   })
 }
